@@ -1,6 +1,6 @@
 
 
-# Bank API
+# Equipment Inventory
 
 ## Description
 
