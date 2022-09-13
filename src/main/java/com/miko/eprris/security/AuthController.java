@@ -13,10 +13,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.web.header.Header;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -54,15 +52,20 @@ public class AuthController {
                 .withExpiresAt(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
                 .withIssuer(user.toString())
                 .sign(algorithm);
-        Map<String, String> tokens = new HashMap<>();
-        ArrayList<Object> response = new ArrayList<>();
-        tokens.put("ACCESS_TOKEN", access_token);
-        tokens.put("REFRESH_TOKEN", refresh_token);
-        response.add(tokens);
-        response.add(username);
+
+        UserDTO authUser = new UserDTO(
+                username.getId(),
+                username.getName(),
+                username.getUsername(),
+                username.getEmail(),
+                access_token,
+                refresh_token
+        );
 
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+
+
+        return new ResponseEntity<>(authUser, HttpStatus.OK);
 
     }
 }

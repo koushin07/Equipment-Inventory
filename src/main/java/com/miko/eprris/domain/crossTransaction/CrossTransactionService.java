@@ -1,5 +1,6 @@
 package com.miko.eprris.domain.crossTransaction;
 
+import com.miko.eprris.Exception.notFound.NotFoundException;
 import com.miko.eprris.domain.equipment.Equipment;
 import com.miko.eprris.domain.equipment.EquipmentRepository;
 import com.miko.eprris.domain.municipality.Municipality;
@@ -31,9 +32,9 @@ public class CrossTransactionService {
 
         if(crossTransaction == null){
             Equipment equipment = equipmentRepository.findById(equipmentId)
-                    .orElseThrow(()-> new RuntimeException("not found"));
+                    .orElseThrow(()-> new NotFoundException("equipment not found"));
             Municipality municipality = municipalityRepository.findById(municipalityId)
-                    .orElseThrow(()-> new RuntimeException("not found"));
+                    .orElseThrow(()-> new NotFoundException("equipment not found"));
             CrossTransaction newCTransaction = new CrossTransaction(
                     null,
                     equipment,

@@ -1,5 +1,6 @@
 package com.miko.eprris.domain.transaction;
 
+import com.miko.eprris.Exception.notFound.NotFoundException;
 import com.miko.eprris.domain.equipment.Equipment;
 import com.miko.eprris.domain.equipment.EquipmentRepository;
 import com.miko.eprris.domain.municipality.Municipality;
@@ -32,8 +33,10 @@ public class TransactionService {
         Transaction transaction = transactionRepository.findIfExistEquipmentAndMunicipality(equipmentId, municipalityId);
 
         if (transaction == null) {
-            Equipment equipment = equipmentRepository.findById(equipmentId).orElseThrow(() -> new RuntimeException("not found"));
-            Municipality municipality = municipalityRepository.findById(municipalityId).orElseThrow(() -> new RuntimeException("not found municipality"));
+            Equipment equipment = equipmentRepository.findById(equipmentId)
+                    .orElseThrow(() -> new NotFoundException("Equipment not found"));
+            Municipality municipality = municipalityRepository
+                    .findById(municipalityId).orElseThrow(() -> new NotFoundException("Municipality not found municipality"));
             /*creating new transaction to be saved in the database*/
             Transaction createTransaction =
                     new Transaction(

@@ -1,5 +1,6 @@
 package com.miko.eprris.domain.province;
 
+import com.miko.eprris.Exception.notFound.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class ProvinceService {
     void deleteProvince(Long id){
         boolean exist = provinceRepository.existsById(id);
         if (!exist){
-            throw new IllegalStateException("nothing to delete province not found");
+            throw new NotFoundException("nothing to delete province not found");
         }
         provinceRepository.deleteById(id);
     }

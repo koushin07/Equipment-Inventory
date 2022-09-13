@@ -6,9 +6,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import static javax.persistence.GenerationType.AUTO;
 import static javax.persistence.GenerationType.SEQUENCE;
 
+
 @Entity
+@Table
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -64,7 +67,19 @@ public class Equipment {
     @NotNull
     private Integer quantity;
 
-
-
-
+    public Equipment(String name, String code, String asset_desc, String category, Integer unit,
+                     Integer model_number, Integer serial_number, String status, Integer asset_id,
+                     String remarks, Integer quantity) {
+        this.name = name;
+        this.code = code;
+        this.asset_desc = asset_desc;
+        this.category = category;
+        this.unit = unit;
+        this.model_number = model_number;
+        this.serial_number = serial_number;
+        this.status = status;
+        this.asset_id = asset_id;
+        this.remarks = remarks;
+        this.quantity = quantity;
+    }
 }

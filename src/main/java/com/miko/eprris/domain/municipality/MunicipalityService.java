@@ -1,5 +1,6 @@
 package com.miko.eprris.domain.municipality;
 
+import com.miko.eprris.Exception.notFound.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,7 @@ public class MunicipalityService {
     void deleteMunicipality(Long id) throws Exception {
         boolean exist = municipalityRepository.existsById(id);
         if(exist){
-            throw new Exception("nothing to delete");
+            throw new NotFoundException("nothing to delete");
         }
         municipalityRepository.deleteById(id);
     }
