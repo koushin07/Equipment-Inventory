@@ -28,6 +28,3 @@ Run the application
 **Miko Canares** 
 - [Profile](https://github.com/koushin07)
 
-## License
-
-This project is licensed under the [Apache License 2.0](./LICENSE).
